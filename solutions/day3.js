@@ -3,8 +3,9 @@
 const fs = require('fs');
 const input = fs.readFileSync('../input/day3.txt').toString();
 const directions = input.split('');
-const visitMap = {};
-const position = { x: 0, y: 0 };
+let visitMap = {};
+let santasPosition = { x: 0, y: 0 };
+let santasRobotsPosition = { x: 0, y: 0 };
 
 const DIRECTION = {
     LEFT: '<',
@@ -14,10 +15,11 @@ const DIRECTION = {
 };
 
 /**
- * Move Santo to his new position
+ * Move Santo to his new santasPosition
+ * @param {object} position
  * @param {string} direction
  */
-function move (direction)
+function move (position, direction)
 {
     switch (direction) {
         case DIRECTION.LEFT:
@@ -36,10 +38,12 @@ function move (direction)
             position.y++;
             break;
     }
+
+    return position;
 }
 
 /**
- * Visit the house at the position Santa is at
+ * Visit the house at the santasPosition Santa is at
  * @param {object} house
  */
 function visit (house)
@@ -72,18 +76,36 @@ function getValues (object)
 }
 
 // start visiting the start location
-visit(position);
+visit(santasPosition);
 directions.forEach(direction => {
-    move(direction);
-    visit(position);
+    santasPosition = move(santasPosition, direction);
+    visit(santasPosition);
 });
 
-const atLeastOneVisit = getValues(visitMap).filter(value => value > 0).length;
+let atLeastOneVisit = getValues(visitMap).filter(value => value > 0).length;
 
 console.log(atLeastOneVisit);
 
+//2565
 
 // Part 2
-const santasDirections = directions.filter((direction, index) => index % 2 === 0);
-const roboSantasDirections = directions.filter((direction, index) => index % 2 === 1);
+santasPosition = { x: 0, y: 0 };
+visitMap = {};
 
+visit(santasPosition);
+visit(santasRobotsPosition);
+
+directions.forEach((direction, index) => {
+    if (index % 2 === 0) {
+        santasPosition = move(santasPosition, direction);
+        visit(santasPosition);
+    }
+    else {
+        santasRobotsPosition = move(santasRobotsPosition, direction);
+        visit(santasRobotsPosition);
+    }
+});
+
+atLeastOneVisit = getValues(visitMap).filter(value => value > 0).length;
+
+console.log(atLeastOneVisit);
