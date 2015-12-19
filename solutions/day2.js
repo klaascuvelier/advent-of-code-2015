@@ -50,17 +50,12 @@ function calculateRibbon (giftDimensions)
 
 // Part 1, total gift wrapping paper
 const paperTotal = giftsDimensions
-    .reduce((total, dimension) => {
-        return total + calculatePaperNeeded(dimension);
-    }, 0);
+    .reduce((total, dimension) => total + calculatePaperNeeded(dimension), 0);
 
 console.log(paperTotal);
 
 // Part 2, total ribbon length
 const ribbonTotal = giftsDimensions
-    .reduce((total, dimension) => {
-       // console.log(total, dimension, calculateRibbon(dimension));
-        return total + calculateRibbon(dimension);
-    }, 0);
+    .reduce((total, dimension) => total + calculateRibbon(dimension), 0);
 
 console.log(ribbonTotal);
