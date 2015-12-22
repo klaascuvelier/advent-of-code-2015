@@ -1,7 +1,7 @@
 'use strict';
 
 const fs = require('fs');
-const input = fs.readFileSync('../input/day10.txt').toString().split(`\n`).map(s => s.trim());
+const start = fs.readFileSync('../input/day10.txt').toString();
 
 
 function process (input)
@@ -36,7 +36,7 @@ function process (input)
 
 
 // Part 1
-let string = '1113222113';
+let string = start;
 for (let counter = 0; counter < 40; counter++) {
     string = process(string);
 }
@@ -44,7 +44,7 @@ for (let counter = 0; counter < 40; counter++) {
 console.log(string.length);
 
 // Part 2
-string = '1113222113';
+string = start;
 for (let counter = 0; counter < 50; counter++) {
     string = process(string);
 }
