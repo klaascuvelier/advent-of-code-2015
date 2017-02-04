@@ -1,0 +1,15 @@
+{
+  "name": "advent-of-code",
+  "version": "1.0.0",
+  "description": "",
+  "main": "day4.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Klaas Cuvelier <cuvelierklaas@gmail.com> (http://klaascuvelier.be/)",
+  "license": "ISC",
+  "dependencies": {
+    "md5": "2.0.0"
+  }
+}

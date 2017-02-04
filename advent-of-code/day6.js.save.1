@@ -1,0 +1,62 @@
+'use strict';
+
+const size = 9;
+const grid = Array(size * size);
+
+function initGrid () 
+{
+  for (let counter = 0; counter < (size * size); counter++) {
+     const col = counter % size;
+     const row = (counter - col) / size;
+
+     turnOff(row, col
+);
+  }
+}
+
+function toggle (row, col)
+{
+  grid[row * size + col] = !grid[row * size + col];
+}
+
+function turnOn (row, col)
+{
+    grid[row * size + col] = 1;
+}
+
+function turnOff (row, col)
+{
+  grid[row * size + col] = 0;
+}
+
+function toggleSquare (start1, start2, end1, end2, value)
+{
+  for (let counter1 = start1; counter1 <= end1; counter1++) {
+    for (let counter2 = start2; counter2 <= end2; counter2++) {
+      toggle(counter1, counter2, value);
+    }
+  }
+}
+
+function printGrid ()
+{
+  var output = '';
+  for (let counter = 0; counter < (size * size); counter++) {
+    if (counter % size === 0 && counter > 0) {
+      output += `\n`;
+    }
+    output += `${grid[counter]} `;
+  }
+  console.log(`${output}\n`);
+}
+
+function countValues (value) 
+{
+  return grid.filter(v => v === value).length;
+}
+
+initGrid();
+printGrid();
+
+toggleSquare(5, 5, 6, 6, 1);
+printGrid();
